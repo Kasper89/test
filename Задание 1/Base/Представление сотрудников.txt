@@ -1,0 +1,7 @@
+SELECT        E.id, E.FIO AS [Ф.И.О.], E.Floor AS Пол, E.[Date of Birth] AS [Дата рождения], TD.Name AS [Тип документа], D.SerialNumber AS [Номер и серия], D.[date of issue] AS [Дата выдачи], D.[issued by] AS [Кем выдано], 
+                         TT.Name AS [Тип телефона], T.Number AS [Номер телефона]
+FROM            dbo.Employee AS E INNER JOIN
+                         dbo.Documents AS D ON E.id = D.idEmployee INNER JOIN
+                         dbo.telephones AS T ON E.id = T.idEmployee INNER JOIN
+                         dbo.Typedocuments AS TD ON D.TypeDocuments = TD.id INNER JOIN
+                         dbo.Typetelephon AS TT ON T.Typetelephon = TT.id

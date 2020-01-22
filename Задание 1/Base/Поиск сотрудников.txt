@@ -1,0 +1,3 @@
+select *
+from ViewEmployee
+where [Ф.И.О.] like '%'

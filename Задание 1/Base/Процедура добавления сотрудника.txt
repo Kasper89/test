@@ -1,0 +1,67 @@
+CREATE PROCEDURE [dbo].[AddEmployee] 
+	@FIO nchar(50),
+	@Floor nchar (8),
+	@Date_of_Dirth date,
+	@SerialNumber  nchar(50),
+	@TypeDocuments nchar (50),
+	@Date_of_issue date,
+	@issued_by nchar (100),
+	@Number nchar(11),
+	@Typetelephon nchar(10)
+AS
+BEGIN
+DECLARE @ErrorMes NVARCHAR(40)
+BEGIN TRY
+	if ((((Year(getdate()))-YEAR(@Date_of_Dirth)) < 100) and (((Year(getdate()))-YEAR(@Date_of_Dirth)) > 18) )
+	begin
+			If ((select id from Employee where [FIO]=@FIO and [Date of Birth]=@Date_of_Dirth) is null)
+				begin
+					if ((select id from Documents where [SerialNumber]=@SerialNumber and [TypeDocuments]=(select id from typedocuments where [Name]=@TypeDocuments)) is null)
+					begin
+						if ((select id from telephones where [Number]=@Number) is null)
+				    BEGIN TRANSACTION
+	 INSERT INTO [dbo].[Employee]
+           ([FIO],[Floor]
+           ,[Date of Birth])
+     VALUES
+           (@FIO,@Floor,@Date_of_Dirth)
+Declare @idEmployee bigint=(select id from [dbo].[Employee] where FIO=@FIO and [Date of Birth]= @Date_of_Dirth),
+@idTypeDocuments bigint =(select id from Typedocuments where [Name]=@TypeDocuments),
+@IdTypetelephon bigint = (select id from typetelephon where [Name]=@Typetelephon)
+
+			INSERT INTO [dbo].[Documents]
+           ([SerialNumber],[TypeDocuments]
+           ,[Date of issue],[issued by],[idEmployee])
+     VALUES
+           (@SerialNumber,@idTypeDocuments,@Date_of_issue,@issued_by, @idEmployee)
+
+		   INSERT INTO [dbo].[telephones]
+           ([Number],[Typetelephon]
+           ,[idEmployee])
+     VALUES
+           (@Number,@IdTypetelephon,@idEmployee)
+    COMMIT TRAN --Транзакция успешна
+	end 
+	select @ErrorMes='18-100'
+	end
+	select @ErrorMes='есть такой'
+	end
+	select @ErrorMes='есть телефон'
+END TRY
+BEGIN CATCH
+ DECLARE @ErrorMessage NVARCHAR(4000);  
+    DECLARE @ErrorSeverity INT;  
+    DECLARE @ErrorState INT;  
+  
+    SELECT   
+        @ErrorMessage = ERROR_MESSAGE(),  
+        @ErrorSeverity = ERROR_SEVERITY(),  
+        @ErrorState = ERROR_STATE();
+    IF @@TRANCOUNT > 0
+        ROLLBACK TRAN --Откат транзакции
+
+    -- Отображение ошибки
+    RAISERROR(@ErrorMes,@ErrorMessage, @ErrorSeverity, @ErrorState)
+END CATCH
+END
+GO

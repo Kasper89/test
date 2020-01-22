@@ -1,0 +1,8 @@
+C:\Users\Kasper\Desktop\Задание 1\APP\Exercise 1\Exercise 1\bin\Release\Exercise 1.exe.config
+C:\Users\Kasper\Desktop\Задание 1\APP\Exercise 1\Exercise 1\bin\Release\Exercise 1.exe
+C:\Users\Kasper\Desktop\Задание 1\APP\Exercise 1\Exercise 1\bin\Release\Exercise 1.pdb
+C:\Users\Kasper\Desktop\Задание 1\APP\Exercise 1\Exercise 1\obj\Release\Exercise_1.Form1.resources
+C:\Users\Kasper\Desktop\Задание 1\APP\Exercise 1\Exercise 1\obj\Release\Exercise_1.Properties.Resources.resources
+C:\Users\Kasper\Desktop\Задание 1\APP\Exercise 1\Exercise 1\obj\Release\Exercise 1.csproj.GenerateResource.Cache
+C:\Users\Kasper\Desktop\Задание 1\APP\Exercise 1\Exercise 1\obj\Release\Exercise 1.exe
+C:\Users\Kasper\Desktop\Задание 1\APP\Exercise 1\Exercise 1\obj\Release\Exercise 1.pdb

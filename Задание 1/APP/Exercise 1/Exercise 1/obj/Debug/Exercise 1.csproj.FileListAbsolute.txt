@@ -1,0 +1,9 @@
+C:\Users\Kasper\Desktop\Задание 1\APP\Exercise 1\Exercise 1\bin\Debug\Exercise 1.exe.config
+C:\Users\Kasper\Desktop\Задание 1\APP\Exercise 1\Exercise 1\bin\Debug\Exercise 1.exe
+C:\Users\Kasper\Desktop\Задание 1\APP\Exercise 1\Exercise 1\bin\Debug\Exercise 1.pdb
+C:\Users\Kasper\Desktop\Задание 1\APP\Exercise 1\Exercise 1\obj\Debug\Exercise 1.csprojResolveAssemblyReference.cache
+C:\Users\Kasper\Desktop\Задание 1\APP\Exercise 1\Exercise 1\obj\Debug\Exercise_1.Form1.resources
+C:\Users\Kasper\Desktop\Задание 1\APP\Exercise 1\Exercise 1\obj\Debug\Exercise_1.Properties.Resources.resources
+C:\Users\Kasper\Desktop\Задание 1\APP\Exercise 1\Exercise 1\obj\Debug\Exercise 1.csproj.GenerateResource.Cache
+C:\Users\Kasper\Desktop\Задание 1\APP\Exercise 1\Exercise 1\obj\Debug\Exercise 1.exe
+C:\Users\Kasper\Desktop\Задание 1\APP\Exercise 1\Exercise 1\obj\Debug\Exercise 1.pdb

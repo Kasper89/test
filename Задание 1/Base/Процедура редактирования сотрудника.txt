@@ -1,0 +1,48 @@
+CREATE PROCEDURE [dbo].[EditEmployee] 
+	@idEmployee bigint, 
+	@FIO nchar(50),
+	@Floor nchar (8),
+	@Date_of_Dirth date,
+	@SerialNumber  nchar(50),
+	@TypeDocuments nchar (50),
+	@Date_of_issue date,
+	@issued_by nchar (100),
+	@Number nchar(11),
+	@Typetelephon nchar(10)
+AS
+BEGIN
+BEGIN TRY
+    BEGIN TRANSACTION
+	UPDATE [dbo].[Employee]
+        Set [FIO]=@FIO,[Floor]=@Floor
+           ,[Date of Birth]=@Date_of_Dirth
+		where id=@idEmployee
+Declare 
+@idTypeDocuments bigint =(select id from Typedocuments where [Name]=@TypeDocuments),
+@IdTypetelephon bigint = (select id from typetelephon where [Name]=@Typetelephon)
+			UPDATE [dbo].[Documents]
+			set [SerialNumber]=@SerialNumber,[TypeDocuments]=@idTypeDocuments
+           ,[Date of issue]=@Date_of_issue,[issued by]=@issued_by,[idEmployee]=@idEmployee
+			Where [idEmployee]=@idEmployee
+
+		   Update [dbo].[telephones]
+           Set [Number]=@Number,[Typetelephon]=@IdTypetelephon
+           ,[idEmployee]=@idEmployee
+			where [idEmployee]=@idEmployee
+		       COMMIT TRAN --Транзакция успешна			   
+END TRY
+BEGIN CATCH
+ DECLARE @ErrorMessage NVARCHAR(4000);  
+    DECLARE @ErrorSeverity INT;  
+    DECLARE @ErrorState INT;  
+    SELECT   
+        @ErrorMessage = ERROR_MESSAGE(),  
+        @ErrorSeverity = ERROR_SEVERITY(),  
+        @ErrorState = ERROR_STATE();
+    IF @@TRANCOUNT > 0
+        ROLLBACK TRAN --Откат транзакции
+    -- Отображение ошибки
+    RAISERROR(@ErrorMessage, @ErrorSeverity, @ErrorState)
+END CATCH
+END
+GO
